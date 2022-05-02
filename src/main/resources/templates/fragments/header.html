@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+
+<div th:fragment="header">
+
+    <div class="header middle">
+        <div class="header-logo text-center">
+            <a class="header-logo text-dark" href="/">HelloMarket</a>
+        </div>
+
+        <div class="header header-middle">
+            <nav class="nav d-flex justify-content-between">
+                <a class="p-2 link-secondary" href="/item/list">전체 상품보기 </a>
+                <a class="p-2 link-secondary" href="/item/list">신상품</a>
+                <a class="p-2 link-secondary" href="/item/list">베스트</a>
+                <a class="p-2 link-secondary" href="/item/list">알뜰쇼핑</a>
+                <a class="p-2 link-secondary" href="/item/list">특가/혜택</a>
+
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+
+    </div>
+</div>
+</html>

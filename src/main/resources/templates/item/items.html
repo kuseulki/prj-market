@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+    <style>
+        .fieldError { color: #bd2130; }
+    </style>
+
+<div layout:fragment="content">
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <form method="post" enctype="multipart/form-data" th:object="${itemFormDto}">
+                    <div class="row g-3">
+                        <h3>상품 등록</h3>
+                        <hr/>
+                        <input type="hidden" th:field="*{id}">
+                        <div class="col-12">
+                            <label th:for="itemName" class="form-label">상품명</label>
+                            <input type="text" th:field="*{itemName}" class="form-control" placeholder="상품명을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="fieldError">Incorrect data</p>
+                        </div>
+                        <div class="col-12">
+                            <label th:for="price" class="form-label">가격</label>
+                            <input type="number" th:field="*{price}" class="form-control" placeholder="상품 가격을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
+                        </div>
+
+                        <div class="col-12">
+                            <label th:for="stock" class="form-label">재고</label>
+                            <input type="number" th:field="*{stock}" class="form-control" placeholder="상품의 재고를 입력해주세요">
+                            <p th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="fieldError">Incorrect data</p>
+                        </div>
+
+                        <div class="col-12">
+                            <label th:for="itemDetail" class="form-label">상품 설명</label>
+                            <textarea class="form-control" aria-label="With textarea" th:field="*{itemDetail}"></textarea>
+                            <p th:if="${#fields.hasErrors('itemDetail')}" th:errors="*{itemDetail}" class="fieldError">Incorrect data</p>
+                        </div>
+
+                        <div class="col-12">
+                            <label th:for="imgFile" class="form-label">상품 이미지 업로드</label>
+                            <input type="file" class="form-control" id="imgFile" name="imgFile">
+                        </div>
+
+                        <div th:if="${#strings.isEmpty(itemFormDto.id)}" style="text-align: center">
+                            <button th:formaction="@{/admin/item/new}" type="submit" class="btn btn-primary">저장</button>
+                        </div>
+                        <div th:unless="${#strings.isEmpty(itemFormDto.id)}" style="text-align: center">
+                            <button th:formaction="@{'/admin/item/' + ${itemFormDto.id} }" type="submit" class="btn btn-primary">수정</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</html>

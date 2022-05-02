@@ -1,0 +1,37 @@
+server:
+  port: 80
+  servlet:
+    context-path:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+#itemImgLocation: C:/shop/item   # 상품 이미지 업로드 경로
+#uploadPath: file:///C:/shop/    # 리소스 업로드 경로
+
+spring:
+  thymeleaf:
+    cache: false
+  devtools:
+    livereload:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB       # 파일 한 개당 최대 사이즈
+      max-request-size: 100MB   # 요청당 최대 파일 크기
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/qwe?serverTimezone=Asia/Seoul
+    username: qwe
+    password: qwe1234
+
+  jpa:
+    #open-in-view: false
+    hibernate:
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+

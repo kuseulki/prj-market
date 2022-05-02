@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="nav">
+
+    <style>
+        .home { text-align:left; font-size: 20px; }
+        .nav-link { color: black; font-size: 13px; font-weight: bold; }
+        .header-logo { padding-bottom: 20px; font-size: 30px; }
+        .link-secondary { color: black; font-size: 15px; font: 'Noto Sans'; text-decoration-line:none; }
+        .header { margin-left : 80px; margin-right : 80px}
+    </style>
+
+        <div class="header navbar-area">
+            <div class="header-top">
+                <div class="d-flex justify-content-end">
+
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}">Home</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>         <!--  로그인x 사용자한테만 보임 -->
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/join}">회원가입</a>        <!--  로그인x 사용자한테만 보임 -->
+
+                    <form class="d-flex" sec:authorize="hasAnyAuthority('ROLE_USER')">
+                        <a class="nav-link" th:href="@{/}">장바구니</a>
+                    </form>
+
+                    <form class="d-flex" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/admin/item/new}">상품등록</a>
+                        <a class="nav-link" th:href="@{/admin/item/manage}">상품관리</a>
+                    </form>
+
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>  <!--  로그인o 사용자한테만 보임 -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>
